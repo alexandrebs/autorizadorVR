@@ -35,10 +35,14 @@ public class Cartao {
 
 	@Column(name = "valor")
 	private Long valor;
-/*
-	public InvalidArgumentException orElseThrow(Cartao object) {
 
-		return  new InvalidArgumentException("Já existe um cartão cadastrado com o numero informado: "+object.getNumeroCartao());
+	
+	public Long debitarValor(Long saldo) {
+		 
+		if(this.valor>=saldo) {
+			this.valor = this.valor -saldo; 
+		}
+		return this.valor;
 	}
-*/
+	
 }
