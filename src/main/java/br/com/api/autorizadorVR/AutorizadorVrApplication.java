@@ -10,7 +10,6 @@ public class AutorizadorVrApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AutorizadorVrApplication.class, args);
 		
-		System.out.println("Criado com sucesso");
 	}
 
 }

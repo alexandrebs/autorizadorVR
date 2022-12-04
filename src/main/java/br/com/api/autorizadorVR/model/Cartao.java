@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Cartao {
 
 	@Id
-	@Column(name = "numeroCartao", unique = true, nullable = false)
+	@Column(name = "numerocartao", unique = true, nullable = false)
 	private String numeroCartao;
 
 	@Column(name = "senha")
