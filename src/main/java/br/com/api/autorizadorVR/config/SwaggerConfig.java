@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 	private static final String BASE_PAKAGE = "br.com.api.autorizadorVR.controller";
-	private static final String API_TITULO = "Avaliação VR";
+	private static final String API_TITULO = "Autorizador Cartão VR";
 	private static final String API_DESCRICAO="Autorizador de cartão de crédito";
 	private static final String API_VERSAO = "1.0.0";
 	private static final String CONTATO_NAME = "Alexandre B. Santana";
