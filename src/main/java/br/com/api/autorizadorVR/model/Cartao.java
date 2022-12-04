@@ -1,5 +1,7 @@
 package br.com.api.autorizadorVR.model;
 
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +9,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.api.autorizadorVR.exception.InvalidArgumentException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -32,5 +35,10 @@ public class Cartao {
 
 	@Column(name = "valor")
 	private Long valor;
+/*
+	public InvalidArgumentException orElseThrow(Cartao object) {
 
+		return  new InvalidArgumentException("Já existe um cartão cadastrado com o numero informado: "+object.getNumeroCartao());
+	}
+*/
 }

@@ -2,6 +2,7 @@ package br.com.api.autorizadorVR.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,11 +22,11 @@ public class CartaoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@NotBlank
+	@Id
 	private String numeroCartao;
 	@NotBlank
 	private String senha;
 	
-	private Long valor;
+	//private Long valor;
 
 }
