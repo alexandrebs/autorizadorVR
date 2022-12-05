@@ -25,11 +25,11 @@ services:
     environment:
       MYSQL_DATABASE: miniautorizador
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
     
-    api:
-      build: "./api"
-      container_name: node-container
-      restart: always
-      ports: 
-        - "8080:8080"
+##   api:
+##    build: "./api"
+##   container_name: node-container
+##    restart: always
+##     ports: 
+##        - "8080:8080"  
