@@ -45,7 +45,7 @@ public class CartaoController {
 			@ApiResponse(code = 422, message = "Cartão já cadastrado no Autorizador", response = InvalidArgumentException.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = StandardError.class), })
 	@PostMapping("/cartoes")
-	public ResponseEntity<Cartao> inserirCartao(@Valid @RequestBody CartaoDTO dto) {
+	public ResponseEntity<Cartao> inserirCartao(@Valid @RequestBody CartaoDTO dto) throws Exception {
 
 		Cartao cartao = cartaoService.inserirCartao(dto);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cartao.getNumeroCartao())
@@ -76,7 +76,7 @@ public class CartaoController {
 			@ApiResponse(code = 404, message = "Not Found", response = StandardError.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = StandardError.class), })
 	@PostMapping("/transacoes")
-	public ResponseEntity<Cartao> alterarEquipe( @Valid @RequestBody Cartao cartao) {
+	public ResponseEntity<Cartao> alterarEquipe( @Valid @RequestBody Cartao cartao) throws Exception {
 
 		cartaoService.autorizarCartao(cartao);
 
