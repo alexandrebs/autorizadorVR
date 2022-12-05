@@ -1,18 +1,12 @@
 package br.com.api.autorizadorVR.service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.api.autorizadorVR.dto.CartaoDTO;
-import br.com.api.autorizadorVR.dto.SaldoDTO;
-import br.com.api.autorizadorVR.exception.BadRequestException;
 import br.com.api.autorizadorVR.exception.InvalidArgumentException;
 import br.com.api.autorizadorVR.exception.NotFoundException;
 import br.com.api.autorizadorVR.model.Cartao;
@@ -39,7 +33,7 @@ public class CartaoService {
 		}
 		Cartao cartao = new Cartao();
 		cartao = modelMapper.map(dto, Cartao.class);
-		cartao.setValor(500L);
+		cartao.setValor(500F);
 		cartaoRepository.save(cartao);
 
 		return cartao;

@@ -36,9 +36,6 @@ public class CartaoController {
 	@Autowired
 	private CartaoService cartaoService;
 	
-	
-	
-	
 	@ApiOperation(value = "Inserir Cartao")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = Cartao.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = StandardError.class),

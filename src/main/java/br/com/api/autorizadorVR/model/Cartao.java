@@ -33,11 +33,11 @@ public class Cartao {
 	@Column(name = "senha")
 	private String senha;
 
-	@Column(name = "valor")
-	private Long valor;
+	@Column(name = "valor", length = 10, scale = 2, precision = 2)
+	private Float valor;
 
 	
-	public Long debitarValor(Long saldo) {
+	public Float debitarValor(Float saldo) {
 		 
 		if(this.valor>=saldo) {
 			this.valor = this.valor -saldo; 
