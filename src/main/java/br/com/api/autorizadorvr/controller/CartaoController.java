@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.api.autorizadorvr.dto.CartaoDTO;
@@ -45,9 +47,8 @@ public class CartaoController {
 	public ResponseEntity<Cartao> inserirCartao(@Valid @RequestBody CartaoDTO dto) throws Exception {
 
 		Cartao cartao = cartaoService.inserirCartao(dto);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cartao.getNumeroCartao())
-				.toUri();
-		return ResponseEntity.created(location).body(cartao);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(cartao);
 
 	}
 	
@@ -56,7 +57,7 @@ public class CartaoController {
 			@ApiResponse(code = 400, message = "Bad Request", response = StandardError.class),
 			@ApiResponse(code = 401, message = "Unauthorized", response = StandardError.class),
 			@ApiResponse(code = 403, message = "Fordiben", response = StandardError.class),
-			@ApiResponse(code = 404, message = "Not Found", response = StandardError.class),
+			@ApiResponse(code = 404, message = "Not Found", response = NotFound.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = StandardError.class), })
 	@GetMapping("/cartoes/{numeroCartao}")
 	public ResponseEntity<Object> consultarSaldo(@PathVariable("numeroCartao") String numeroCartao) {
@@ -73,13 +74,10 @@ public class CartaoController {
 			@ApiResponse(code = 404, message = "Not Found", response = StandardError.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = StandardError.class), })
 	@PostMapping("/transacoes")
-	public ResponseEntity<Cartao> alterarEquipe( @Valid @RequestBody Cartao cartao) throws Exception {
-
+	public ResponseEntity<Cartao> realizarTransacao( @Valid @RequestBody Cartao cartao) throws Exception {
 		cartaoService.autorizarCartao(cartao);
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/transacoes").buildAndExpand(cartao.getNumeroCartao())
-				.toUri();
-		return ResponseEntity.created(location).body(cartao);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(cartao);
 
 
 	}
