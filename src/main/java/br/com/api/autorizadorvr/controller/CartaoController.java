@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
+import org.springframework.web.client.HttpClientErrorException.UnprocessableEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.api.autorizadorvr.dto.CartaoDTO;
@@ -38,13 +39,13 @@ public class CartaoController {
 	@ApiOperation(value = "Inserir Cartao")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = Cartao.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = StandardError.class),
-			@ApiResponse(code = 401, message = "Unauthorized", response = StandardError.class),
+			@ApiResponse(code = 401, message = "Unauthorized", response = InvalidArgumentException.class),
 			@ApiResponse(code = 403, message = "Fordiben", response = StandardError.class),
 			@ApiResponse(code = 404, message = "Not Found", response = StandardError.class),
 			@ApiResponse(code = 422, message = "Cartão já cadastrado no Autorizador", response = InvalidArgumentException.class),
 			@ApiResponse(code = 500, message = "Internal Server Error", response = StandardError.class), })
 	@PostMapping("/cartoes")
-	public ResponseEntity<Cartao> inserirCartao(@Valid @RequestBody CartaoDTO dto) throws Exception {
+	public ResponseEntity<Cartao> inserirCartao(@Valid @RequestBody CartaoDTO dto) throws Exception, UnprocessableEntity  {
 
 		Cartao cartao = cartaoService.inserirCartao(dto);
 		
